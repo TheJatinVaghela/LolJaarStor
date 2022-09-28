@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import MainNav from './componets/MainNav.js'
+import Save from './componets/Save.js'
+import Noted from './componets/Noted.js'
+import Weather from './componets/Weather.js'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+     <Routes>
+       <Route path="/" element={ <MainNav /> } >
+       <Route path="/" element={ <Weather/> } />
+          <Route path="Save" element={<Save/>} />
+          <Route path="Noted" element={<Noted/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 
