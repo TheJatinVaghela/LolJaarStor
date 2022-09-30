@@ -21,12 +21,7 @@ const Write_Note = props => {
         setTakeNote_Holder(prew => prew = "");
      }
      let TakeNote = (e)=>{
-       if(e.target.value.Char <= 0){
-        
-        if(window.confirm("your Note Is Empty") === true){
-            Show_Hide()
-          } ;
-       }
+       
       setTakeNote_Holder(prew => prew = e.target.value);
       
      }
