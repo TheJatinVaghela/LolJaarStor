@@ -12,27 +12,12 @@ const Weather = props => {
       RE: Mt,
       
    };
-   // let Comp_Note_Holder = document.getElementsByClassName("Comp_Note");
-   // console.log(Comp_Note_Holder);
    
-   // Efft();
-   //  function Efft (){
-   //    (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
-   //  };
-
    useEffect(() => {
-    //    if (Saved !== null ) {
-    //     SAVE_Ary+=[{S:Saved}];
-    //    }else{
-    //    SAVE_Ary=null;
-    //    localStorage.setItem("SAVE" , JSON.stringify(SAVE_Ary));
-    //    }
-    (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
-    
-    }, [])
+             (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
+     }, [])
    
     let SaveToLocale = (e, Note)=>{
-     
       infoOBJ={
          HH : "One H!",
          NO : "NOP!",
@@ -41,27 +26,20 @@ const Weather = props => {
       };
       let Saved = JSON.parse(localStorage.getItem(Saved_Word));
         if (Saved !== null ) {
-            // console.log("NOT NULL");
             SAVE_Ary=Saved;
-            // console.log(infoOBJ);
-           SAVE_Ary.push(infoOBJ);
-            
-           // console.log(SAVE_Ary);
-           localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary))
-           }else{
-            // console.log("NULL");
+            SAVE_Ary.push(infoOBJ);
+            localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary))
+        }else{
             SAVE_Ary=[infoOBJ];
             localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary))
-           };
-         }
+        };
+    }
         
-       
      let Show_Hide = (e)=>{
         let Elm = document.getElementsByClassName("Write_Note_Div_Hide");
         if(Elm.length === 0){ return alert("One Note Is Open Cindly Close That To Open Another") }
         Elm[0].classList.replace("Write_Note_Div_Hide" , "Write_Note_Div_Show")
-        
-     }
+      }
   return (
     <>
      <div>

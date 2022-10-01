@@ -11,12 +11,10 @@ const Write_Note = props => {
     let Elm = document.getElementsByClassName(WNDH);
     
    const [TakeNote_Holder, setTakeNote_Holder] = useState("");
-    // console.log(props.Run_Show_Hide);
    if (props.Run_Show_Hide >= 1 ){ Noted_Show_Hide(); }
 
    function Noted_Show_Hide (){
     props.ChangeElm.classList.replace(WNDH , WNDS)
-    // [...Elm].map((E)=> E.classList.replace(WNDH , WNDS));
        WNDH_WNDS()
        Re_SunNum = 1;
   }
@@ -24,9 +22,7 @@ const Write_Note = props => {
   function SUBMIT (e){
     e.preventDefault();
     SubNum = 1;
-    // console.log("Submited" , SubNum);
     SubNumBigEqulToOne();
-    // console.log(TakeNote_Holder);
     if(Re_SunNum !== 1){ props.SaveToLocale_Func("", TakeNote_Holder); }else{props.Func_Store_Edit(TakeNote_Holder, props.ChangeElm)};
  }
     function WNDH_WNDS (){
