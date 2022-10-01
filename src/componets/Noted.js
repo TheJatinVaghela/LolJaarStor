@@ -47,10 +47,8 @@ const Noted = props => {
     Swich_Esy_Splice(index);
     }
     break;
-    default:{
-      Swich_Esy_Splice(index);
-    }
-      break;
+    default:Swich_Esy_Splice(index);
+    break;
    }
 
    localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
@@ -77,7 +75,7 @@ const Noted = props => {
     localStorage.setItem("SAVE",JSON.stringify(Sort_Saved_Noted));
     setGetST(prew => prew = JSON.parse(localStorage.getItem("SAVE")));
   } 
-  
+
   function Chj(){
     console.log(...Elm);
      [...Elm].map((E)=> E.style.display="none")
