@@ -32,6 +32,7 @@ const Weather = props => {
     }, [])
    
     let SaveToLocale = (e, Note)=>{
+     
       infoOBJ={
          HH : "One H!",
          NO : "NOP!",
@@ -42,7 +43,7 @@ const Weather = props => {
         if (Saved !== null ) {
             // console.log("NOT NULL");
             SAVE_Ary=Saved;
-            console.log(infoOBJ);
+            // console.log(infoOBJ);
            SAVE_Ary.push(infoOBJ);
             
            // console.log(SAVE_Ary);
@@ -70,7 +71,7 @@ const Weather = props => {
      </div>
     
     
-     <Write_Note Numb={Mt} SaveToLocale_Func={SaveToLocale}/>
+     <Write_Note Numb={Mt} SaveToLocale_Func={SaveToLocale} />
     </>
   )
 }

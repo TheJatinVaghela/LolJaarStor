@@ -1,21 +1,31 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import PropTypes from 'prop-types'
-
+import Write_Note from './Write_Note.js'
 const Noted = props => {
   let Sort_Saved_Noted;
   let Re_Saved_Noted_Get;
   let Perent_Elm ;
   let Saved_Noted_Get_lenght;
   let Swich_Esy_Splice;
+  let GetEdit;
+  let GetEdit_Id;
+  let Elm = document.getElementsByClassName("Edit");
+  const [ChengingElm, setChengingElm] = useState("") ;
+  const [GetST , setGetST] = useState ("")
+  const [OBJGetEdit, setOBJGetEdit] = useState("");
+
+  const [Run_Show_Hide, setRun_Show_Hide] = useState(0);
   let Saved_Noted_Get = JSON.parse(localStorage.getItem("SAVE"));
   if(Saved_Noted_Get !== null){
     Sort_Saved_Noted = Saved_Noted_Get.map((e,index)=>{
       e.id = index;
       return e
     })
+    // console.log(Sort_Saved_Noted);
     Re_Saved_Noted_Get = Sort_Saved_Noted.filter((e)=> e.note || e.note === "");
   };
-  console.log(Re_Saved_Noted_Get);
+  // console.log(Re_Saved_Noted_Get);
+  // console.log(Sort_Saved_Noted);
 
   let Noted_Get_Delete = (e)=>{
 
@@ -53,6 +63,46 @@ const Noted = props => {
     //  Saved_Noted_Get.splice(Number(index), 1);
     //  console.log(Saved_Noted_Get);
      localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
+  };
+     
+   
+  let Noted_Get_Edit = (e)=>{
+    Chj()
+    // console.log(Run_Show_Hide);
+    setChengingElm(prew => prew = e.nativeEvent.path[1].children[7])
+    // console.log(e.nativeEvent.path[1].children[7]);
+    GetEdit = e.nativeEvent.path[1].children[3].innerText;
+    GetEdit_Id = e.nativeEvent.path[1].children[4].innerText;
+    // console.log(Number(GetEdit_Id));
+    setOBJGetEdit((prew)=> prew = {GetEdit_Id, GetEdit})
+    // console.log(GetEdit);
+    // console.log(OBJGetEdit);
+    setRun_Show_Hide(Run_Show_Hide + 1);
+    // console.log(Run_Show_Hide);
+
+  } 
+
+  function Store_Edit (Value , Elm){
+  
+    Elm.classList.replace("Write_Note_Div_Show", "Write_Note_Div_Hide")
+    //  console.log(Value);
+    //  console.log(OBJGetEdit);
+     Get_ObjWhichEditing(Number(GetEdit_Id),Value )
+  }
+  function Get_ObjWhichEditing (ID, V ){
+    // console.log(Sort_Saved_Noted);
+    // console.log(Number(OBJGetEdit.GetEdit_Id));
+    Sort_Saved_Noted.map((e)=> {if(e.id===Number(OBJGetEdit.GetEdit_Id)){e.note = V; return e }})
+    // console.log(Sort_Saved_Noted);
+    OBJGetEdit.GetEdit = V;
+    localStorage.setItem("SAVE",JSON.stringify(Sort_Saved_Noted));
+    setGetST(prew => prew = JSON.parse(localStorage.getItem("SAVE")));
+   
+    
+  } 
+  function Chj(){
+    console.log(...Elm);
+     [...Elm].map((E)=> E.style.display="none")
   }
   return (
      <>
@@ -63,6 +113,8 @@ const Noted = props => {
             <div key={index} id={e.id}>
                <span>{e.HH}</span> // <span>{e.NO}</span> // <span>{e.RE}</span> // <span>{e.note}</span>// <span>{e.id}</span>
                <button onClick={Noted_Get_Delete}>Delete</button>
+               <button className='Edit' onClick={Noted_Get_Edit }>Edit</button>
+                <Write_Note Run_Show_Hide={Run_Show_Hide}  Func_Store_Edit={Store_Edit} ChangeElm = {ChengingElm}/>
             </div>
            )
         })
