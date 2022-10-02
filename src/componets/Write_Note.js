@@ -26,7 +26,7 @@ const Write_Note = (props) => {
     SubNum = 1;
     SubNumBigEqulToOne();
     if (Re_SunNum !== 1) {
-      props.SaveToLocale_Func("", TakeNote_Holder);
+      props.SaveToLocale_Func( TakeNote_Holder );          /////////////////////////////
     } else {
       props.Func_Store_Edit(TakeNote_Holder, props.ChangeElm);
     }
