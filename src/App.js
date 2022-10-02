@@ -5,17 +5,25 @@ import Save from './componets/Save.js'
 import Noted from './componets/Noted.js'
 import Weather from './componets/Weather.js'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
 
 function App() {
+  let [Value, setValue] = useState("MackBook");
+  function GetValue (V){
+    setValue(prew=> prew = V);
+    return Value;
+  }
   return (
     <>
     <BrowserRouter>
      <Routes>
-       <Route path="/" element={ <MainNav /> } >
-       <Route path="/" element={ <Weather/> } />
-          <Route path="Save" element={<Save/>} />
-          <Route path="Noted" element={<Noted/>} />
-        </Route>
+
+       <Route path="/" element={ <MainNav Value={Value} setValue={setValue} ReGetValue={GetValue} /> } >
+         <Route index element={<Weather TakeValue={Value}/>} />
+           <Route path="Save" element={<Save/>} />
+           <Route path="Noted" element={<Noted/>} />
+      </Route>
+        
       </Routes>
     </BrowserRouter>
     </>

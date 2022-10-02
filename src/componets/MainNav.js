@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
 import PropTypes from 'prop-types'
 import { Outlet, Link } from "react-router-dom";
-// import Weather from './Weather.js'
+//  import Weather from './Weather.js'
 
 const MainNav = props => {
   const [Search, useSearch] = useState("")
@@ -11,9 +11,9 @@ const MainNav = props => {
    function GetValue (e){
     useSearch(prew => prew = e.target.value);
     console.log(Search);
+    props.ReGetValue(e.target.value)
   };
-  
-
+ 
   return (
     <>
       <nav className='Main-Nav top-0 sticky bg-orange-500 rounded-full'>

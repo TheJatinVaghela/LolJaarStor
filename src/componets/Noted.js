@@ -70,6 +70,7 @@ const Noted = props => {
   }
 
   function Get_ObjWhichEditing (ID, V ){
+    console.log(Sort_Saved_Noted);
     Sort_Saved_Noted.map((e)=> {if(e.id===Number(OBJGetEdit.GetEdit_Id)){e.note = V; return e }})
     OBJGetEdit.GetEdit = V;
     localStorage.setItem("SAVE",JSON.stringify(Sort_Saved_Noted));
