@@ -10,7 +10,7 @@ const MainNav = props => {
   
    function GetValue (e){
     useSearch(prew => prew = e.target.value);
-    console.log(Search);
+     //console.log(Search);
     props.ReGetValue(e.target.value)
   };
  

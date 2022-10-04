@@ -6,7 +6,6 @@ const Noted = props => {
   let Sort_Saved_Noted;
   let Re_Saved_Noted_Get;
   let Perent_Elm ;
-  let Saved_Noted_Get_lenght;
   let Swich_Esy_Splice;
   let GetEdit;
   let GetEdit_Id;
@@ -36,31 +35,9 @@ const Noted = props => {
 
   let Delet_Saved=(index)=>{
     Saved_Noted_Get.filter((e,IN) =>{if (e.id === index){Newin = IN;}} );
-    Swich_Esy_Splice(Newin)+
-    { /*switch (Saved_Noted_Get_lenght) {
-     Saved_Noted_Get_lenght = Saved_Noted_Get.lenght;
-    case Saved_Noted_Get_lenght=== 1:{
-      index = 0;
-      Swich_Esy_Splice(index);
-    }
-    break;
-    case Saved_Noted_Get_lenght === index:{
-    index= Saved_Noted_Get_lenght -1;
-    Swich_Esy_Splice(index);
-    }
-    break;
-    case Saved_Noted_Get_lenght < index:{
-    index= Saved_Noted_Get_lenght -1;
-    Swich_Esy_Splice(index);
-    }
-    break;
-    default:Swich_Esy_Splice(index);
-    break;
-   } */}
-   localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
-   
-   
-
+    Swich_Esy_Splice(Newin)
+    
+    localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
   };
      
    
@@ -79,7 +56,7 @@ const Noted = props => {
   }
 
   function Get_ObjWhichEditing (ID, V ){
-    console.log(Sort_Saved_Noted);
+     //console.log(Sort_Saved_Noted);
     Sort_Saved_Noted.map((e)=> {if(e.id===Number(OBJGetEdit.GetEdit_Id)){e.note = V; return e }})
     OBJGetEdit.GetEdit = V;
     localStorage.setItem("SAVE",JSON.stringify(Sort_Saved_Noted));
@@ -87,7 +64,7 @@ const Noted = props => {
   } 
 
   function Chj(){
-    console.log(...Elm);
+     //console.log(...Elm);
      [...Elm].map((E)=> E.style.display="none")
   }
   return (

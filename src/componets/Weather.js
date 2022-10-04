@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import Write_Note from './Write_Note.js'
 const Weather = props => {
    let E ;
-    //const [HH, setHH] = useState("") ;
-    //const [NO, setNO] = useState("") ;
    let HH;
    let NO;
    const [Saved_Word, setSaved_Word] = useState("SAVE");
@@ -36,9 +34,9 @@ const Weather = props => {
       //   
       //   await fetch(`https://target1.p.rapidapi.com/auto-complete?q=${props.TakeValue || `mackBook`}%20air`, options)
       //       .then(response =>  response.json())
-      //       .then(response => { console.log(response); return Arr=response.suggestions })
+      //       .then(response => {  {/*console.log(response); */}return Arr=response.suggestions })
       //       .catch(err => console.error(err));
-      //       console.log(Arr);
+      //        //console.log(Arr);
       //       setProductArry((prew)=> prew = Arr)        
       // })();
       setProductArry((prew)=> prew = [
@@ -86,41 +84,26 @@ const Weather = props => {
         Get_HH_NO_Value(E)
     }
     function Get_HH_NO_Value (E){
-      console.log(E.nativeEvent.path[1].children[1].innerText);
-      //setHH((prew)=> prew = E.nativeEvent.path[1].children[1].innerText)
-      //setNO((prew)=> prew = E.nativeEvent.path[1].children[0].src)
       HH = E.nativeEvent.path[1].children[1].innerText;
       NO = E.nativeEvent.path[1].children[0].src;
     }
     let SaveToLocale = (e)=>{
-      // console.log(E);
-      // console.log(e);
       if(e === undefined){return}
-         // E = e
-         Get_HH_NO_Value(e);
-         inside_Save()
-      // }else{
-      //    console.log(E);
-      //   Get_HH_NO_Value(E);
-       
-      // setHH(prew => prew = e.nativeEvent.path[1].children[1].innerText);
-      //  console.log(e.nativeEvent.path[1].children[0].src);
+      Get_HH_NO_Value(e);
+      inside_Save()
    };
      
     function inside_Save (Note){
-      // if (Note!== undefined){ SaveToLocale(undefined , E);}
-        
-        console.log(E);
       infoOBJ={
          HH : HH,
          NO : NO,
          RE: Mt,
          note: Note,
       };
-      console.log(infoOBJ);
-      Saving();
+       Saving();
       };
-        function Saving (){
+
+     function Saving (){
          let Saved = JSON.parse(localStorage.getItem(Saved_Word));
        if (Saved !== null ) {
            SAVE_Ary=Saved;
@@ -133,7 +116,7 @@ const Weather = props => {
      }
 
     
-       console.log(ProductArry)
+      
       return (
          <>
          <article className='flex gap-5 flex-wrap'>
