@@ -2,6 +2,7 @@ import React,{ useState } from 'react'
 import PropTypes from 'prop-types'
 import Write_Note from './Write_Note.js'
 const Noted = props => {
+  let Newin ;
   let Sort_Saved_Noted;
   let Re_Saved_Noted_Get;
   let Perent_Elm ;
@@ -9,6 +10,7 @@ const Noted = props => {
   let Swich_Esy_Splice;
   let GetEdit;
   let GetEdit_Id;
+ 
   let Elm = document.getElementsByClassName("Edit");
   const [ChengingElm, setChengingElm] = useState("") ;
   const [GetST , setGetST] = useState ("")
@@ -22,16 +24,21 @@ const Noted = props => {
   };
   
   let Noted_Get_Delete = (e)=>{
+ 
     Perent_Elm = e.nativeEvent.path[1]
     Delet_Saved(Number(Perent_Elm.id));
     Perent_Elm.style.display = "none";
   };
 
-  Swich_Esy_Splice =(index)=>Saved_Noted_Get.splice(Number(index), 1);
+  Swich_Esy_Splice =(index)=>{
+    Saved_Noted_Get.splice(Number(index), 1);
+  }
 
   let Delet_Saved=(index)=>{
+    Saved_Noted_Get.filter((e,IN) =>{if (e.id === index){Newin = IN;}} );
+    Swich_Esy_Splice(Newin)+
+    { /*switch (Saved_Noted_Get_lenght) {
      Saved_Noted_Get_lenght = Saved_Noted_Get.lenght;
-     switch (Saved_Noted_Get_lenght) {
     case Saved_Noted_Get_lenght=== 1:{
       index = 0;
       Swich_Esy_Splice(index);
@@ -49,9 +56,11 @@ const Noted = props => {
     break;
     default:Swich_Esy_Splice(index);
     break;
-   }
-
+   } */}
    localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
+   
+   
+
   };
      
    
