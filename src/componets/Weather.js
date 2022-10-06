@@ -5,6 +5,7 @@ const Weather = props => {
    let E ;
    let HH;
    let NO;
+   let PR;
    const [Saved_Word, setSaved_Word] = useState("SAVE");
    let Arr = [];
    const [ProductArry, setProductArry] = useState([])
@@ -23,23 +24,16 @@ const Weather = props => {
          (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
         
          if (props.TakeValue === undefined) return;
-      //  ( async()=>{
-      //  const options = {
-      //       method: 'GET',
-      //       headers: {
-      //          'X-RapidAPI-Key': '80878a924amshac9807be2633669p16bf90jsn7b32fc7488bc',
-      //          'X-RapidAPI-Host': 'target1.p.rapidapi.com'
-      //       }
-      //    };
-      //   
-      //   await fetch(`https://target1.p.rapidapi.com/auto-complete?q=${props.TakeValue || `mackBook`}%20air`, options)
-      //       .then(response =>  response.json())
-      //       .then(response => {  {/*console.log(response); */}return Arr=response.suggestions })
-      //       .catch(err => console.error(err));
-      //        //console.log(Arr);
-      //       setProductArry((prew)=> prew = Arr)        
-      // })();
-      setProductArry((prew)=> prew = [
+        ( async()=>{
+        
+         await fetch(`https://api.storerestapi.com/products`)
+             .then(response =>  response.json())
+             .then(response => {  {/*console.log(response); */}return Arr=response.data })
+             .catch(err => console.error(err));
+              //console.log(Arr);
+             setProductArry((prew)=> prew = Arr)        
+       })();
+      {/* setProductArry((prew)=> prew = [
            {
              "label": "macbook air charger",
              "location": "/s?searchTerm=macbook+air+charger&category=0|All|matchallpartial|all%20categories"
@@ -73,8 +67,9 @@ const Weather = props => {
              "location": "/s?searchTerm=apple+macbook+air+charger&category=0|All|matchallpartial|all%20categories"
            }
          ]
-        )
-     }, [props.TakeValue])
+        ) */}
+     // }, [props.TakeValue])
+      }, [])
    
      let Show_Hide = (e)=>{
         let Elm = document.getElementsByClassName("Write_Note_Div_Hide");
@@ -86,6 +81,8 @@ const Weather = props => {
     function Get_HH_NO_Value (E){
       HH = E.nativeEvent.path[1].children[1].innerText;
       NO = E.nativeEvent.path[1].children[0].src;
+      PR = E.nativeEvent.path[1].children[2].innerText;
+      
     }
     let SaveToLocale = (e)=>{
       if(e === undefined){return}
@@ -97,6 +94,7 @@ const Weather = props => {
       infoOBJ={
          HH : HH,
          NO : NO,
+         PR:PR,
          RE: Mt,
          note: Note,
       };
@@ -119,22 +117,32 @@ const Weather = props => {
       
       return (
          <>
-         <article className='flex gap-5 flex-wrap'>
+         <article className='Ar_grid'>
     {ProductArry && ProductArry.map((E,index)=> {
       return (
         
-         <div key={index} className="w-20 h-30 isolate inline-flex flex-wrap flex-row">
-              <img className='z-0' src={`https://th.bing.com/th/id/OIP.T3hrhEBcsVYNUJ-_5t1oKgHaHa?pid=ImgDet&rs=1`} alt="IMG" />
-              <h3>{E.label}</h3>
-              <button className='' onClick={SaveToLocale}>Save</button>
-              <button className="Comp_Note" onClick={Show_Hide}>Note</button>
-              <Write_Note className='' Numb={Mt} SaveToLocale_Func={inside_Save} />
+        //  <div key={index} className="w-20 h-30 isolate inline-flex flex-wrap flex-row">
+        //       <img className='z-0' src={`https://th.bing.com/th/id/OIP.T3hrhEBcsVYNUJ-_5t1oKgHaHa?pid=ImgDet&rs=1`} alt="IMG" />
+        //       <h3>{E.title}</h3>
+        //       <h3 className='bold'>{E.price}</h3>
+        //       <button className='' onClick={SaveToLocale}>Save</button>
+        //       <button className="Comp_Note" onClick={Show_Hide}>Note</button>
+        //       <Write_Note className='' Numb={Mt} SaveToLocale_Func={inside_Save} />
        
-         </div>
-       
+        //  </div>
+        <div key={index} className='grid outline-2 outline-red-400'>
+          <img src="https://preview.redd.it/0yi415b12kr11.jpg?auto=webp&s=ee2c39d4db20447bd8178a46e740709aee6c5a82" alt="" />
+          <h1>{E.title}</h1>
+          <span className='Price text-center'> Price = {E.price}</span>
+          <button onClick={Show_Hide} className='Note_Add Cart bold bg-red-300 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>Note & Add Cart</button>
+          <button  onClick={SaveToLocale} className='Add_Cart bold bg-red-300 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>Add Cart</button>
+          <Write_Note className='' Numb={Mt} SaveToLocale_Func={inside_Save} />
+      </div>
       )
     })}
           </article>
+
+        
         {/* <div  className="w-20 h-20 isolate">
               <img className='z-0' src={`https://th.bing.com/th/id/OIP.T3hrhEBcsVYNUJ-_5t1oKgHaHa?pid=ImgDet&rs=1`} alt="IMG" />
               <h3>eheyna</h3>
