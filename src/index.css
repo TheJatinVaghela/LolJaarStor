@@ -61,7 +61,7 @@ width: var(--IMG_Nav);
 :root{
   --font : Black;
    --Font-Size : clamp(.3rem , .3rem + 1.3333vw , 5rem);
-   --Font-Size_AR_Grid: clamp(.1rem, .1rem + 2vw , 5.3rem);
+   --Font-Size_AR_Grid: clamp(.1rem, .1rem + 1vw , 5.3rem);
  }
 .Main_Nav{
    position: sticky;

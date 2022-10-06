@@ -19,24 +19,7 @@ const MainNav = props => {
 }
   return (
     <>
-      {/* <nav className='Main-Nav top-0 sticky bg-orange-500 rounded-full'>
-          <ul>
-            <li><Link className='li_Main' to="/">Home</Link></li>
-            <li className='li_Search relative isolate'><input className='search' type="search" name="search" id="search" onChange={GetValue} value={Search} placeholder="Search" />
-              <ul className='absolute'>
-                 {/* <li>HI</li> */}
-              {/* </ul>
-            </li>
-            <li><Link className='li_Save Nav_Cart_IMG_Contain' to="/Save"><img className='Nav_Cart_IMG' src="https://freepngimg.com/thumb/cart/2-2-cart-png-file.png" alt="" /></Link></li>
-            <li><Link className='li_Noted' to="/Noted">{Noted}</Link></li>
-          </ul>
-      </nav>
-      <div> */}
-        {/* <Weather/> */}
-      {/* </div> */} 
-
-
-      <div className="Main_Nav">
+    <div className="Main_Nav">
         <div className="MN_1_Div">
          <Link to="/User">
             <img
@@ -56,10 +39,10 @@ const MainNav = props => {
            <Link to="/Noted"><h1>Noted</h1></Link>
         </div>
       </div>
-      <Outlet/>
 
       {/* /////// */}
       
+      <Outlet/>
     </>
   )
 }
