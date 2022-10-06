@@ -43,7 +43,7 @@ const Save = props => {
         Re_Saved_Get && Re_Saved_Get.map((e, index)=>{
          return (
         <div key={e.id} id={e.id}>
-            <span>{e.HH}</span> // <span>{e.NO}</span> // <span>{e.RE}</span> // <span>{e.id}</span> 
+            <span>{e.HH}</span> // <span>{e.NO}</span> // <span>{e.RE}</span> // <span>{e.id}</span> // <span>{e.PR}</span> 
            <button onClick={Saved_Get_Delete}>Delete</button>
         </div>)
         }

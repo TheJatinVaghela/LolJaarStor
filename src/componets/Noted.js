@@ -43,7 +43,8 @@ const Noted = props => {
    
   let Noted_Get_Edit = (e)=>{
     Chj()
-    setChengingElm(prew => prew = e.nativeEvent.path[1].children[7])
+   
+    setChengingElm(prew => prew = e.nativeEvent.path[1].children[8])
     GetEdit = e.nativeEvent.path[1].children[3].innerText;
     GetEdit_Id = e.nativeEvent.path[1].children[4].innerText;
    setOBJGetEdit((prew)=> prew = {GetEdit_Id, GetEdit})
@@ -74,7 +75,7 @@ const Noted = props => {
        Re_Saved_Noted_Get && Re_Saved_Noted_Get.map((e,index)=>{
           return(
             <div key={index} id={e.id}>
-               <span>{e.HH}</span> // <span>{e.NO}</span> // <span>{e.RE}</span> // <span>{e.note}</span>// <span>{e.id}</span>
+               <span>{e.HH}</span> // <span>{e.NO}</span> // <span>{e.RE}</span> // <span>{e.note}</span>// <span>{e.id}</span>// <span>{e.PR}</span>
                <button onClick={Noted_Get_Delete}>Delete</button>
                <button className='Edit' onClick={Noted_Get_Edit }>Edit</button>
                 <Write_Note Run_Show_Hide={Run_Show_Hide}  Func_Store_Edit={Store_Edit} ChangeElm = {ChengingElm}/>

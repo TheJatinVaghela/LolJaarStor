@@ -16,6 +16,7 @@ const Write_Note = (props) => {
   }
 
   function Noted_Show_Hide() {
+   
     props.ChangeElm.classList.replace(WNDH, WNDS);
     WNDH_WNDS();
     Re_SunNum = 1;

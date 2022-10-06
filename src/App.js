@@ -4,6 +4,7 @@ import MainNav from './componets/MainNav.js'
 import Save from './componets/Save.js'
 import Noted from './componets/Noted.js'
 import Weather from './componets/Weather.js'
+import User from './componets/User.js'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 
@@ -15,15 +16,14 @@ function App() {
   }
   return (
     <>
-    <BrowserRouter>
-     <Routes>
-
-       <Route path="/" element={ <MainNav Value={Value} setValue={setValue} ReGetValue={GetValue} /> } >
-         <Route index element={<Weather TakeValue={Value}/>} />
-           <Route path="Save" element={<Save/>} />
-           <Route path="Noted" element={<Noted/>} />
-      </Route>
-        
+   <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainNav Value={Value} setValue={setValue} ReGetValue={GetValue} />}>
+          <Route index element={<Weather TakeValue={Value}/>} />
+          <Route path="/User" element={<User />} />
+          <Route path="/Saved" element={<Save />} />
+          <Route path="/Noted" element={<Noted />} />
+        </Route>
       </Routes>
     </BrowserRouter>
     </>
