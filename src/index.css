@@ -60,8 +60,12 @@ width: var(--IMG_Nav);
 
 :root{
   --font : Black;
-   --Font-Size : clamp(.3rem , .3rem + 1.3333vw , 5rem);
+   --Font-Size : clamp(.5rem , .5rem + 1.3333vw , 5rem); 
    --Font-Size_AR_Grid: clamp(.1rem, .1rem + 1vw , 5.3rem);
+   --BTN_Width_Height : clamp(1rem, 1rem + 2vw , 10rem);
+  --Save_G_D_1_IMG : clamp(3rem , 3rem + 7vw , 30rem);
+  --White: white;
+  --Green : green;
  }
 .Main_Nav{
    position: sticky;
@@ -154,3 +158,64 @@ width: var(--IMG_Nav);
   border-bottom: 2px solid white;
 
 }
+
+
+/* ======= */
+
+.Save_G{
+  display: flex;
+  height: clamp(5rem , 5rem + 3vw , 30rem);
+  outline: 2px solid red;
+  width: 100%;
+  height: auto;
+  align-items: center
+}
+.Save_G_D_1{
+width: minmax(50% , 100%);
+outline: 2px solid Black;
+}
+.Save_G_D_1 > img{
+  width: var(--Save_G_D_1_IMG);
+  height: var(--Save_G_D_1_IMG);
+}
+.Save_G_D_2{
+  padding-left:  1rem;
+  width: 60%;
+  font-size: var(--Font-Size);
+ }
+
+
+ .Save_G_D_2 > div {
+  display: flex;
+  flex-wrap: wrap;
+ }
+ .Save_G_D_2_Div_PM > button{
+  width: var(--BTN_Width_Height);
+  height: var(--BTN_Width_Height);
+  font-size: var(--Font-Size);
+
+  background-color: #5f5e5e;
+  outline: 2px solid var(--White);
+  color: var(--White);
+ }
+ .Save_G_D_2_Div_PM > div > span {
+  margin-inline:  2%;
+ }
+  .Save_G_D_2_Div_DC{
+    display: flex;
+    column-gap: 1rem;
+    font-weight: 600;
+   font-size: var(--Font-Size);
+   margin-top: 1%;
+  }
+
+ .Save_G_D_2_Div_DC_B_1{
+  background-color: rgb(225, 0, 0);
+  color: var(--White);
+ }
+ .Save_G_D_2_Div_DC_B_2{
+  background-color: var(--Green);
+  color: var(--White);
+ }
+
+ 

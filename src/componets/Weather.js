@@ -46,7 +46,7 @@ const Weather = props => {
     function Get_HH_NO_Value (E){
       HH = E.nativeEvent.path[1].children[1].innerText;
       NO = E.nativeEvent.path[1].children[0].src;
-      PR = E.nativeEvent.path[1].children[2].innerText;
+     PR = E.nativeEvent.path[1].children[2].children[1].innerText;
       
     }
     let SaveToLocale = (e)=>{
@@ -89,7 +89,11 @@ const Weather = props => {
         <div key={index} className='grid outline-2 outline-red-400'>
           <img src="https://preview.redd.it/0yi415b12kr11.jpg?auto=webp&s=ee2c39d4db20447bd8178a46e740709aee6c5a82" alt="" />
           <h1>{E.title}</h1>
-          <span className='Price text-center'> Price = {E.price}</span>
+
+          <div className='flex justify-center'>
+              <span className='Price text-center'>Price =</span><span className='Price text-center'>{E.price}</span>
+          </div>
+
           <button onClick={Show_Hide} className='Note_Add Cart bold bg-red-300 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>Note & Add Cart</button>
           <button  onClick={SaveToLocale} className='Add_Cart bold bg-red-300 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>Add Cart</button>
           <Write_Note className='' Numb={Mt} SaveToLocale_Func={inside_Save} />
