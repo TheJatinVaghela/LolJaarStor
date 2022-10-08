@@ -12,11 +12,12 @@ const Write_Note = (props) => {
 
   const [TakeNote_Holder, setTakeNote_Holder] = useState("");
   if (props.Run_Show_Hide >= 1) {
+    //console.log(props.Run_Show_Hide);
     Noted_Show_Hide();
   }
 
   function Noted_Show_Hide() {
-   
+   //console.log(props.ChangeElm);
     props.ChangeElm.classList.replace(WNDH, WNDS);
     WNDH_WNDS();
     Re_SunNum = 1;
@@ -33,7 +34,7 @@ const Write_Note = (props) => {
     }
   }
   function WNDH_WNDS() {
-    return (WNDS = "Write_Note_Div_Hide"), (WNDH = "Write_Note_Div_Show");
+    return ((WNDS = "Write_Note_Div_Hide"), (WNDH = "Write_Note_Div_Show"));
   }
   function TakeNote(e) {
     setTakeNote_Holder((prew) => (prew = e.target.value));
@@ -70,8 +71,10 @@ const Write_Note = (props) => {
   function Func_ChangeElm(Func) {
     if (Func === "Yes") {
       WNDH_WNDS();
-    }
+    };
+   // console.log(WNDH, WNDS);
     props.ChangeElm.classList.replace(WNDH, WNDS);
+    //console.clear()
   }
   return (
     <>
