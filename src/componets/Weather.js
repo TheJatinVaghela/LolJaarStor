@@ -37,9 +37,15 @@ const Weather = props => {
       }, [])
    
      let Show_Hide = (e)=>{
-        let Elm = document.getElementsByClassName("Write_Note_Div_Hide");
-        if(Elm.length === 0){ return alert("One Note Is Open Cindly Close That To Open Another") }
-        Elm[0].classList.replace("Write_Note_Div_Hide" , "Write_Note_Div_Show")
+       let Elm = document.getElementsByClassName("Write_Note_Div_Show");
+          if(Elm[0]){
+            return
+          }
+       if(e.nativeEvent.path[1].children[5].classList[1] === "Write_Note_Div_Hide"){
+         e.nativeEvent.path[1].children[5].classList.replace("Write_Note_Div_Hide" , "Write_Note_Div_Show");
+       }
+       
+        Elm[0].children[1].focus();
         E = e;
         Get_HH_NO_Value(E)
     }
@@ -61,6 +67,7 @@ const Weather = props => {
          NO : NO,
          PR:PR,
          RE: Mt,
+         iv: "1",
          note: Note,
       };
        Saving();

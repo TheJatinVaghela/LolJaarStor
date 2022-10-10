@@ -14,7 +14,12 @@ const Save = props => {
   let IntialValue;
   let I_D_IntialValue;
   
- 
+  let pr;
+  let IV;
+  let ID;
+
+  const [ReloadCount, setReloadCount] = useState(0) 
+
   let Saved_Get = JSON.parse(localStorage.getItem("SAVE"));
 
   const [MoneyElm, setMoneyElm] = useState("")  ;
@@ -30,9 +35,12 @@ if(Saved_Get !== null){
 }
    
 let Saved_Get_Delete = (e)=>{
+  setReloadCount((P)=> P = P+1);
+   
     Perent_Elm = e.nativeEvent.path[3]
     Delet_Saved(Number(Perent_Elm.id));
-    Perent_Elm.style.display = "none";
+    // setReloadCount((P)=> P = P-1);
+    // Perent_Elm.style.display = "none";
 };
 
 Swich_Esy_Splice =(index)=> {
@@ -53,7 +61,7 @@ function HOVER (e){
     
     IntialValue  = Number(e.nativeEvent.path[3].children[1].children[1].children[1].innerText);
     setRE_IntialValue((P)=> P={EY : String(Number(IntialValue) / Number(I_D_IntialValue.innerText))});
-
+    
 return;
 };
     IntialValue  = e.nativeEvent.path[3].children[1].children[1].children[1].innerText
@@ -91,8 +99,38 @@ function SET_Value(e){
   e.nativeEvent.path[2].children[1].children[1].innerText = Number(RE_IntialValue.EY) * Number(RE_I_D_IntialValue.YE.innerText) ;
 }
 
-
-
+function MouseLeave(e) {
+  
+  //console.log("Leave");
+//console.log( e.nativeEvent.path)
+  
+  e.nativeEvent.path.forEach((e) => {
+    if(e.className === "Save_G"){
+        //  console.log(e);
+         FOR_MouseLeave(e)
+       }
+  });
+ //console.log(pr , IV , ID);
+  // console.log(Re_Saved_Get);
+  // console.log(Saved_Get);
+  Saved_Get.filter((e)=>{
+    if(e.id === Number(ID)){
+        e.PR = pr;
+        e.iv= (IV)? IV : "1";
+     }
+    return e
+  });
+  //console.log(Saved_Get);
+  localStorage.setItem("SAVE",JSON.stringify(Saved_Get));
+  
+}
+function FOR_MouseLeave(e) {
+  pr = e.children[1].children[1].children[1].innerText;
+  IV = e.children[1].children[2].children[1].children[1].innerText;
+  ID = e.id;
+//  console.log(pr , IV, ID);
+  return pr , IV, ID
+} 
 
 
   return (
@@ -101,7 +139,7 @@ function SET_Value(e){
        {
         Re_Saved_Get && Re_Saved_Get.map((e, index)=>{
          return (
-       <div className='Save_G' key={e.id} id={e.id} >
+       <div className='Save_G' key={e.id} id={e.id} onMouseLeave={MouseLeave}>
             <div className='Save_G_D_1'>
               <img src="https://preview.redd.it/0yi415b12kr11.jpg?auto=webp&s=ee2c39d4db20447bd8178a46e740709aee6c5a82" alt="" />
             </div>
@@ -113,7 +151,7 @@ function SET_Value(e){
               <div className='Save_G_D_2_Div_PM'>
                   <button className='Save_G_D_2_button_1' onMouseOver={HOVER} onClick={Decrees}> - </button>
                       <div className='contents'> 
-                        <span> item =</span> <span>1</span>
+                        <span> item =</span> <span>{e.iv}</span>
                       </div>
                   <button className='Save_G_D_2_button_2' onMouseOver={HOVER} onClick={Increes}> + </button>
               </div>

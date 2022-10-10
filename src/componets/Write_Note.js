@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { logDOM } from "@testing-library/react";
 
 const Write_Note = (props) => {
-  let SubNum = 0;
+  // let SubNum = 0;
+  const [SubNum, setSubNum] = useState(0)
   let Re_SunNum = 0;
   let WNDS = "Write_Note_Div_Show";
   let WNDH = "Write_Note_Div_Hide";
@@ -18,15 +19,17 @@ const Write_Note = (props) => {
 
   function Noted_Show_Hide() {
     props.ChangeElm.classList.replace(WNDH, WNDS);
-    // console.log(props.ChangeElm.classList);
+    //  console.log(props.ChangeElm.children[3]);
+     props.ChangeElm.children[3].focus()
     WNDH_WNDS();
     Re_SunNum = 1;
   }
 
   function SUBMIT(e) {
-    e.preventDefault();
-    SubNum = 1;
-    SubNumBigEqulToOne();
+    // e.preventDefault();
+    setSubNum((P)=> P = P + 1) 
+    // SubNum = 1;
+    SubNumBigEqulToOne(e);
     if (Re_SunNum !== 1) {
      
       props.SaveToLocale_Func( TakeNote_Holder );          /////////////////////////////
@@ -42,33 +45,46 @@ const Write_Note = (props) => {
   function TakeNote(e) {
     setTakeNote_Holder((prew) => (prew = e.target.value));
   }
-  function SubNumBigEqulToOne() {
+  function SubNumBigEqulToOne(e) {
     [...EditElm].map((E) => (E.style.display = "initial"));
-    if ((SubNum = 1)) {
+    //console.log(TakeNote_Holder);
+    if (SubNum === 1) {
+    
       WNDH_WNDS();
-      Replce_WN();
-      SubNum = 0;
+      Replce_WN(e);
+      // SubNum = 0;
+      setSubNum((P)=> P = P-1);
     } else {
-      Conform();
+      
+      //console.log("1");
+      Conform(e);
     }
   }
-  function Conform() {
-    if (
-      window.confirm(
-        "You Have Not Submited The Note Are You Sure To Close It"
-      ) === true
-    ) {
+  function Conform(e) {
+    // window.confirm("You Have Not Submited The Note Are You Sure To Close It")
+    // if (window.confirm(
+    //     "You Have Not Submited The Note Are You Sure To Close It"
+    //   ) === true) {
       WNDH_WNDS();
-      Replce_WN();
+      Replce_WN(e);
       setTakeNote_Holder((prew) => (prew = ""));
-    }
+    // }
   }
-  function Replce_WN() {
+  function Replce_WN(e) {
+    //console.log(e);
     if (props.ChangeElm !== undefined) {
       Func_ChangeElm("Yes");
     }
-    Elm = document.getElementsByClassName(WNDH);
-    [...Elm].map((e) => e.classList.replace(WNDH, WNDS));
+    // Elm = document.getElementsByClassName(WNDH);
+    // [...Elm].map((e) => {
+    //   e.classList.replace(WNDH, WNDS);
+    //   setTakeNote_Holder((prew) => (prew = ""));
+    //   console.log(e.children[1].innerHTML);
+    // });
+    Elm = e.nativeEvent.path[1];
+    Elm.classList.replace(WNDH, WNDS);
+
+   // console.log(Elm.classList);
   }
 
   function Func_ChangeElm(Func) {
@@ -83,17 +99,20 @@ const Write_Note = (props) => {
     <>
       <div className="Write_Note_Div Write_Note_Div_Hide absolute w-max h-max bg-red-500 border-2 ">
         <h1>{props.Numb}</h1>
-        <textarea
-          name="TakeNote"
-          id="TakeNote"
-          onChange={TakeNote}
-          cols="30"
-          value={TakeNote_Holder}
-          rows="10"
-        />
+       
+            <textarea
+            name="TakeNote"
+            id="TakeNote"
+            onChange={TakeNote}
+            cols="30"
+            value={TakeNote_Holder}
+            rows="10"
+            onKeyPress={(e)=>{if(e.key === "Enter"){return SUBMIT(e) }}}
+          />
+        
         <button onClick={SubNumBigEqulToOne}>XXX</button>
 
-        <button onClick={SUBMIT} type="submit">
+        <button onClick={SUBMIT}  type="submit">
           Save
         </button>
       </div>
