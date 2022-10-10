@@ -115,7 +115,10 @@ let Noted_Get_Edit = (e)=>{
 } 
 
 function Store_Edit (Value , Elm){
-    Elm.classList.replace("Write_Note_Div_Show", "Write_Note_Div_Hide")
+  // // console.log(Elm.classList[1].replace("Write_Note_Div_Hide", "Write_Note_Div_Hide"));
+  // Elm.classList.replace("Write_Note_Div_Show", "Write_Note_Div_Hide");
+  // console.log(Elm.classList);
+  //   //Elm.classList.replace("Write_Note_Div_Show", "Write_Note_Div_Hide")
     Get_ObjWhichEditing(Number(GetEdit_Id),Value )
 }
 
@@ -125,6 +128,7 @@ function Get_ObjWhichEditing (ID, V ){
     OBJGetEdit.GetEdit = V;
     localStorage.setItem("SAVE",JSON.stringify(Sort_Saved_Noted));
     setGetST(prew => prew = JSON.parse(localStorage.getItem("SAVE")));
+    setRun_Show_Hide((p)=> p= 0);
 } 
 
 function Chj(){

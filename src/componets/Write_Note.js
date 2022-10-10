@@ -12,13 +12,13 @@ const Write_Note = (props) => {
 
   const [TakeNote_Holder, setTakeNote_Holder] = useState("");
   if (props.Run_Show_Hide >= 1) {
-    //console.log(props.Run_Show_Hide);
+    // console.log(props.Run_Show_Hide);
     Noted_Show_Hide();
   }
 
   function Noted_Show_Hide() {
-   //console.log(props.ChangeElm);
     props.ChangeElm.classList.replace(WNDH, WNDS);
+    // console.log(props.ChangeElm.classList);
     WNDH_WNDS();
     Re_SunNum = 1;
   }
@@ -28,8 +28,11 @@ const Write_Note = (props) => {
     SubNum = 1;
     SubNumBigEqulToOne();
     if (Re_SunNum !== 1) {
+     
       props.SaveToLocale_Func( TakeNote_Holder );          /////////////////////////////
     } else {
+
+      // console.log("2");
       props.Func_Store_Edit(TakeNote_Holder, props.ChangeElm);
     }
   }
