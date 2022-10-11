@@ -4,6 +4,7 @@ import { logDOM } from "@testing-library/react";
 
 const Write_Note = (props) => {
   // let SubNum = 0;
+ 
   const [SubNum, setSubNum] = useState(0)
   let Re_SunNum = 0;
   let WNDS = "Write_Note_Div_Show";
@@ -13,8 +14,15 @@ const Write_Note = (props) => {
 
   const [TakeNote_Holder, setTakeNote_Holder] = useState("");
   if (props.Run_Show_Hide >= 1) {
-    // console.log(props.Run_Show_Hide);
-    Noted_Show_Hide();
+     //console.log(props.Run_Show_Hide);
+     let A = document.querySelector(".Write_Note_Div_Show #TakeNote");
+     
+     Noted_Show_Hide();
+     
+     try {  A.focus();  }catch(err) {  {/*console.log(err.message) ; */}  }
+      
+   
+     
   }
 
   function Noted_Show_Hide() {
@@ -25,11 +33,13 @@ const Write_Note = (props) => {
     Re_SunNum = 1;
   }
 
-  function SUBMIT(e) {
+  function SUBMIT(e , T) {
+    // console.log(T);
     // e.preventDefault();
     setSubNum((P)=> P = P + 1) 
+    // console.log(SubNum);
     // SubNum = 1;
-    SubNumBigEqulToOne(e);
+    SubNumBigEqulToOne(e , T);
     if (Re_SunNum !== 1) {
      
       props.SaveToLocale_Func( TakeNote_Holder );          /////////////////////////////
@@ -38,6 +48,8 @@ const Write_Note = (props) => {
       // console.log("2");
       props.Func_Store_Edit(TakeNote_Holder, props.ChangeElm);
     }
+
+    alert("Item Added")
   }
   function WNDH_WNDS() {
     return ((WNDS = "Write_Note_Div_Hide"), (WNDH = "Write_Note_Div_Show"));
@@ -45,30 +57,47 @@ const Write_Note = (props) => {
   function TakeNote(e) {
     setTakeNote_Holder((prew) => (prew = e.target.value));
   }
-  function SubNumBigEqulToOne(e) {
+  function SubNumBigEqulToOne(e , T) {
     [...EditElm].map((E) => (E.style.display = "initial"));
     //console.log(TakeNote_Holder);
-    if (SubNum === 1) {
-    
+    // console.log(T);
+    if (SubNum >= 1) {
+    //  console.log("@");
       WNDH_WNDS();
       Replce_WN(e);
       // SubNum = 0;
       setSubNum((P)=> P = P-1);
     } else {
       
-      //console.log("1");
-      Conform(e);
+      // console.log("1");
+      Conform(e , T );
+    
     }
   }
-  function Conform(e) {
-    // window.confirm("You Have Not Submited The Note Are You Sure To Close It")
-    // if (window.confirm(
-    //     "You Have Not Submited The Note Are You Sure To Close It"
-    //   ) === true) {
-      WNDH_WNDS();
-      Replce_WN(e);
-      setTakeNote_Holder((prew) => (prew = ""));
-    // }
+function Conform(e , Text) {
+  let A;
+    if(Text !== "Enter"){
+      // console.log("1");
+
+      A = window.confirm("You Have Not Submited The Note Are You Sure To Close It")
+
+      if (A=== true) {
+      //  console.log("1");
+        WNDH_WNDS();
+        Replce_WN(e);
+        setTakeNote_Holder((prew) => (prew = ""));
+
+        return;
+      }else if (A === false){
+        setSubNum((P)=> P = P + 1) 
+        return;
+      }
+    };
+
+    WNDH_WNDS();
+    Replce_WN(e);
+    setTakeNote_Holder((prew) => (prew = ""));
+
   }
   function Replce_WN(e) {
     //console.log(e);
@@ -81,9 +110,14 @@ const Write_Note = (props) => {
     //   setTakeNote_Holder((prew) => (prew = ""));
     //   console.log(e.children[1].innerHTML);
     // });
+    
     Elm = e.nativeEvent.path[1];
     Elm.classList.replace(WNDH, WNDS);
-
+    setTimeout(() => {
+      
+      alert("Note & ADD Closed");
+    }, 200);
+    
    // console.log(Elm.classList);
   }
 
@@ -107,12 +141,12 @@ const Write_Note = (props) => {
             cols="30"
             value={TakeNote_Holder}
             rows="10"
-            onKeyPress={(e)=>{if(e.key === "Enter"){return SUBMIT(e) }}}
+            onKeyPress={(e)=>{if(e.key === "Enter"){return SUBMIT(e , "Enter") }}}
           />
         
-        <button onClick={SubNumBigEqulToOne}>XXX</button>
+        <button className="XXX" onClick={SubNumBigEqulToOne}>XXX</button>
 
-        <button onClick={SUBMIT}  type="submit">
+        <button className="Save"onClick={SUBMIT}  type="submit">
           Save
         </button>
       </div>

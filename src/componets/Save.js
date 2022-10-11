@@ -57,6 +57,7 @@ function HOVER (e){
  if(Number(e.nativeEvent.path[2].children[2].children[1].children[1].innerText) !== 1 ){
 
     I_D_IntialValue = e.nativeEvent.path[3].children[1].children[2].children[1].children[1] ;
+    
     setRE_I_D_IntialValue((P)=> P={YE : I_D_IntialValue});
     
     IntialValue  = Number(e.nativeEvent.path[3].children[1].children[1].children[1].innerText);
@@ -131,11 +132,13 @@ function FOR_MouseLeave(e) {
 //  console.log(pr , IV, ID);
   return pr , IV, ID
 } 
-
-
+   function ChackOut() {
+     alert("Thnks For ChackingOut")
+   }
+ 
   return (
     <>
-       <h1>SAVE</h1>    
+       <h1 className='HEADERS'>SAVE</h1>    
        {
         Re_Saved_Get && Re_Saved_Get.map((e, index)=>{
          return (
@@ -157,7 +160,7 @@ function FOR_MouseLeave(e) {
               </div>
               <div className='Save_G_D_2_Div_DC'>
                   <button className='Save_G_D_2_Div_DC_B_1' onClick={Saved_Get_Delete}>DELETE</button>
-                  <button className='Save_G_D_2_Div_DC_B_2'>ChackOut</button>
+                  <button className='Save_G_D_2_Div_DC_B_2' onClick={ChackOut}>ChackOut</button>
               </div>
          </div>
       </div>

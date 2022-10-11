@@ -111,9 +111,9 @@ let Delet_Saved=(index)=>{
      
    
 let Noted_Get_Edit = (e)=>{
-    Chj()
-    //console.log(e.nativeEvent.path[3].children[1].children[3].children[3]);
-    setChengingElm(prew => prew = e.nativeEvent.path[3].children[1].children[3].children[3]);
+  //  console.log(e.nativeEvent.path[3].children[1].children[3].children[3]);
+  Chj()
+  setChengingElm(prew => prew = e.nativeEvent.path[3].children[1].children[3].children[3]);
      
     
     GetEdit = e.nativeEvent.path[1].children[3].innerText;
@@ -121,7 +121,8 @@ let Noted_Get_Edit = (e)=>{
     setOBJGetEdit((prew)=> prew = {GetEdit_Id, GetEdit})
     setRun_Show_Hide((p)=> p= p + 1);
     //console.log(Run_Show_Hide);
-   
+    
+    
   } 
 
 function Store_Edit (Value , Elm){
@@ -202,11 +203,13 @@ function FOR_MouseLeave(e) {
 //  console.log(pr , IV, ID);
   return pr , IV, ID
 } 
- 
+function ChackOut() {
+  alert("Thnks For ChackingOut")
+}
 
   return (
      <>
-    <h1>NOTE</h1>
+    <h1 className='HEADERS'>NOTE</h1>
      {
        Re_Saved_Noted_Get && Re_Saved_Noted_Get.map((e,index)=>{
           return(
@@ -232,7 +235,7 @@ function FOR_MouseLeave(e) {
                     </div>
                     <div className='Save_G_D_2_Div_DC'>
                         <button className='Save_G_D_2_Div_DC_B_1' onClick={Noted_Get_Delete}>DELETE</button>
-                        <button className='Save_G_D_2_Div_DC_B_2'>ChackOut</button>
+                        <button className='Save_G_D_2_Div_DC_B_2' onClick={ChackOut}>ChackOut</button>
                         <button className='Edit' onClick={Noted_Get_Edit }>Edit</button>
                         {/*<Write_Note/>*/}
                       <Write_Note Run_Show_Hide={Run_Show_Hide}  Func_Store_Edit={Store_Edit} ChangeElm = {ChengingElm}/>
