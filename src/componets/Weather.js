@@ -39,6 +39,7 @@ const Weather = props => {
      let Show_Hide = (e)=>{
        let Elm = document.getElementsByClassName("Write_Note_Div_Show");
           if(Elm[0]){
+            alert("One Add-Note Is Open Close That One To Open Other ")
             return
           }
        if(e.nativeEvent.path[1].children[5].classList[1] === "Write_Note_Div_Hide"){
@@ -59,6 +60,9 @@ const Weather = props => {
       if(e === undefined){return}
       Get_HH_NO_Value(e);
       inside_Save()
+
+      alert("Item Added")
+      
    };
      
     function inside_Save (Note){
