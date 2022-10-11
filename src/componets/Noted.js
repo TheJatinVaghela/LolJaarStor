@@ -245,8 +245,8 @@ function ChackOut() {
                     </div> */}
               </div>
               <div className="SH_Note contents">
-                  <div className="bg-red-500 w-fit h-fit focus:bg-blue-500">
-                    <button onClick={CLOSE}>Show Note</button>
+                  <div className="SH_Note_ShowNote_DIV bg-red-500 w-fit h-fit focus:bg-blue-500">
+                    <button className='' onClick={CLOSE}>Show Note</button>
                   </div>
                <NotedText TEXT={e.note}/>
               </div>

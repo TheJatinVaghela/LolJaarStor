@@ -178,7 +178,7 @@ width: var(--IMG_Nav);
   outline: 2px solid white;
 }
 .Ar_grid > * > h1 , span {
-  border-bottom: 2px solid white;
+  /* border-bottom: 2px solid white; */
 
 }
 
@@ -191,7 +191,8 @@ width: var(--IMG_Nav);
   outline: 2px solid red;
   width: 100%;
   height: auto;
-  align-items: center
+  align-items: center;
+  background-color: #ff7777;
 }
 .Save_G_D_1{
 width: minmax(50% , 100%);
@@ -235,12 +236,24 @@ outline: 2px solid Black;
  .Save_G_D_2_Div_DC_B_1{
   background-color: rgb(225, 0, 0);
   color: var(--White);
+  border-radius: calc(100% - 90%);
+  padding-inline: 1.5rem;
  }
  .Save_G_D_2_Div_DC_B_2{
   background-color: var(--Green);
   color: var(--White);
+  border-radius: calc(100% - 90%);
+  padding-inline: 1.5rem;
+  padding-block: .5rem;
  }
-
+ .SH_Note_ShowNote_DIV{
+  border-radius: calc(100% - 90%);
+  padding-inline: .2rem;
+  padding-block: .5rem;
+ }
+ .Save_G_D_2_Div_DC{
+  margin-block: 1rem .5rem;
+ }
  /* //////// */
  .NotedTDiv{
   max-width: 80%;
