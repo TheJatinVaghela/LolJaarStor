@@ -158,6 +158,24 @@ width: var(--IMG_Nav);
   }
   
 
+
+.LOADING{
+ display: flex;
+ width: 70%;
+ height: 70%;
+ border: 2px solid RED;
+ background-color: #5f5e5e;
+ margin: auto;
+ font-size: var(--Font-Size);
+ padding: 1rem;
+
+}
+.LOADING > .LOADING_H1{
+  color: #e40000;
+  text-decoration: underline red;
+  display: inline-block;
+  
+}
 .Ar_grid{
   display: grid;
   font-size: var(--Font-Size_AR_Grid);
@@ -311,11 +329,12 @@ outline: 2px solid Black;
   background-color: #5f5e5e;
   width: 100%;
   height: 30%;
-  font-size: xx-large
+  font-size: xx-large;
+  overflow-x: auto;
  }
  #UserName{
   outline: 2px solid red;
-    background-color: antiquewhite;
+    background-color: #3aff0580;
  }
  .UserNameEdit_ADD_HIDE{
   display: none;

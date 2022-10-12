@@ -1,4 +1,4 @@
-import React,{ useState , useEffect } from 'react'
+import React,{ useState , useEffect , useRef } from 'react'
 import PropTypes from 'prop-types'
 import Write_Note from './Write_Note.js'
 const Weather = props => {
@@ -6,6 +6,9 @@ const Weather = props => {
    let HH;
    let NO;
    let PR;
+   let LOADING  = "LOADING";
+   const article = useRef();
+   const LoadIng = useRef();
    const [Saved_Word, setSaved_Word] = useState("SAVE");
    let Arr = [];
    const [ProductArry, setProductArry] = useState([])
@@ -21,20 +24,39 @@ const Weather = props => {
    };
    
     useEffect(() => {
-         (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
+      article.current.style.display = "none";
+      LoadIng.current.children[0].innerText = "Loading = 10%";
+      (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
         
          if (props.TakeValue === undefined) return;
-        ( async()=>{
-        
+         ( async()=>{
+          LoadIng.current.children[0].innerText = "Loading = 30%" ; 
          await fetch(`https://api.storerestapi.com/products`)
-             .then(response =>  response.json())
+         .then(response =>  response.json())
              .then(response => {  {/*console.log(response); */}return Arr=response.data })
-             .catch(err => console.error(err));
-              //console.log(Arr);
-             setProductArry((prew)=> prew = Arr)        
-       })();
-    
-      }, [])
+             .then(()=>   setProductArry((prew)=> prew = Arr)    )
+             .then(()=> {
+                article.current.style.display = "grid";
+                LoadIng.current.style.display = "none";
+              })
+             .catch(err => {
+              console.log(err);
+              article.current.style.display = "none";
+              LoadIng.current.children[0].innerText =  String(err) +  "  (1)=> Chack your network , (2) => API is not working "
+             })
+            
+             //console.log(Arr);
+               
+         })();
+
+        // LoadIng.current.style.display = "none";
+        // article.current.style.display = "grid";
+        
+        // if(article.current.children < 1){
+        //   console.log("hey");
+        // }
+
+     }, [])
    
      let Show_Hide = (e)=>{
        let Elm = document.getElementsByClassName("Write_Note_Div_Show");
@@ -93,7 +115,11 @@ const Weather = props => {
       
       return (
          <>
-         <article className='Ar_grid'>
+         <h1 className='HEADERS'>Store</h1>
+         <div className='LOADING' ref={LoadIng}>
+             <h1 className='LOADING_H1'>{LOADING}</h1>
+         </div>
+         <article className='Ar_grid' ref={article}>
     {ProductArry && ProductArry.map((E,index)=> {
       return (
        

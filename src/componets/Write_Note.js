@@ -5,7 +5,7 @@ import { logDOM } from "@testing-library/react";
 const Write_Note = (props) => {
   // let SubNum = 0;
  
-  const [SubNum, setSubNum] = useState(0)
+  let [SubNum, setSubNum] = useState(0)
   let Re_SunNum = 0;
   let WNDS = "Write_Note_Div_Show";
   let WNDH = "Write_Note_Div_Hide";
@@ -34,10 +34,11 @@ const Write_Note = (props) => {
   }
 
   function SUBMIT(e , T) {
-    // console.log(T);
+    //  console.log(T);
     // e.preventDefault();
-    setSubNum((P)=> P = P + 1) 
     // console.log(SubNum);
+    setSubNum(SubNum = 1) 
+    //  console.log(SubNum);
     // SubNum = 1;
     SubNumBigEqulToOne(e , T);
     if (Re_SunNum !== 1) {
@@ -57,25 +58,33 @@ const Write_Note = (props) => {
   function TakeNote(e) {
     setTakeNote_Holder((prew) => (prew = e.target.value));
   }
-  function SubNumBigEqulToOne(e , T) {
+  function SubNumBigEqulToOne(e , T , SN) {
     [...EditElm].map((E) => (E.style.display = "initial"));
     //console.log(TakeNote_Holder);
     // console.log(T);
+    // console.log(SN);
+    if(SN === 0){
+      // console.log(SN);
+      setSubNum(SubNum=SN)
+    }
+    // console.log(SubNum);
     if (SubNum >= 1) {
-    //  console.log("@");
+      // console.log(SubNum);
       WNDH_WNDS();
       Replce_WN(e);
       // SubNum = 0;
-      setSubNum((P)=> P = P-1);
+      setSubNum((P)=> P = 0);
+      // console.log(SubNum);
     } else {
       
-      // console.log("1");
+      //  console.log("1");
       Conform(e , T );
     
     }
   }
 function Conform(e , Text) {
   let A;
+  // console.log(Text);
     if(Text !== "Enter"){
       // console.log("1");
 
@@ -83,13 +92,15 @@ function Conform(e , Text) {
 
       if (A=== true) {
       //  console.log("1");
+      setSubNum((P)=> P = 0) 
         WNDH_WNDS();
         Replce_WN(e);
         setTakeNote_Holder((prew) => (prew = ""));
-
+        
         return;
       }else if (A === false){
-        setSubNum((P)=> P = P + 1) 
+
+        //  setSubNum((P)=> P = P + 1) 
         return;
       }
     };
@@ -114,8 +125,13 @@ function Conform(e , Text) {
     Elm = e.nativeEvent.path[1];
     Elm.classList.replace(WNDH, WNDS);
     setTimeout(() => {
-      
-      alert("Note & ADD Closed");
+      if(Elm.className === WNDS){
+
+        alert("Note & ADD Closed");
+      }else{
+        setSubNum((P)=> P = 0) 
+
+      }
     }, 200);
     
    // console.log(Elm.classList);
@@ -144,7 +160,7 @@ function Conform(e , Text) {
             onKeyPress={(e)=>{if(e.key === "Enter"){return SUBMIT(e , "Enter") }}}
           />
         
-        <button className="XXX" onClick={SubNumBigEqulToOne}>XXX</button>
+        <button className="XXX" onClick={(e)=>SubNumBigEqulToOne(e,undefined , 0)}>XXX</button>
 
         <button className="Save"onClick={SUBMIT}  type="submit">
           Save
