@@ -15,7 +15,7 @@ const MainNav = props => {
   };
   function L(e){
     e.preventDefault()
-   console.log(e.nativeEvent.path[0].value);
+  //  console.log(e.nativeEvent.path[0].value);
 }
   return (
     <>

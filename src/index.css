@@ -89,7 +89,7 @@ width: var(--IMG_Nav);
    --BTN_Width_Height : clamp(1rem, 1rem + 2vw , 10rem);
   --Save_G_D_1_IMG : clamp(3rem , 3rem + 7vw , 30rem);
   --White: white;
-  --Green : green;
+  --Green : #0bf00b;
  }
 .Main_Nav{
    position: sticky;
@@ -342,3 +342,24 @@ outline: 2px solid Black;
  .UserNameEdit_ADD_SHOW{
   display: initial;
  }
+
+ /* ===== TotalCartDiv */
+
+ .TotalCartDiv{
+    color: var(--font);
+    display: flex;
+    font-weight: 600;
+    font-size: var(--Font-Size);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background: green;
+    border: 2px solid blue;
+    margin-top: 3%;
+    font-family: cursive;
+    padding-right: 1rem;
+ }
+ .TotalCartDiv > button{
+  margin-left: 5%;
+ }
+ 

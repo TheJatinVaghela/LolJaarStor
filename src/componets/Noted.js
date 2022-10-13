@@ -2,6 +2,8 @@ import React,{ useState } from 'react'
 import PropTypes from 'prop-types'
 import Write_Note from './Write_Note.js'
 import NotedText from './NotedT.js'
+import TotalCart from './TotalCart.js'
+
 
 const Noted = props => {
   let Newin ;
@@ -12,11 +14,14 @@ const Noted = props => {
   let GetEdit;
   let GetEdit_Id;
  
+  let RE_IM;
+  let [ItemNumber, setItemNumber] = useState(0)
+
   let pr;
   let IV;
   let ID;
 
-  let Elm = document.getElementsByClassName("Edit");
+ let Elm = document.getElementsByClassName("Edit");
   const [ChengingElm, setChengingElm] = useState("") ;
   const [GetST , setGetST] = useState ("")
   const [OBJGetEdit, setOBJGetEdit] = useState("");
@@ -191,6 +196,7 @@ function MouseLeave(e) {
       }
      return e
    });
+   setItemNumber((P)=> ItemNumber =  Saved_Noted_Get.filter((e)=> e.note || e.note === ""));
   //  console.log(Saved_Noted_Get);
    localStorage.setItem("SAVE",JSON.stringify(Saved_Noted_Get));
   
@@ -205,7 +211,9 @@ function FOR_MouseLeave(e) {
 } 
 function ChackOut() {
   alert("Thnks For ChackingOut")
-}
+};
+
+RE_IM = Re_Saved_Noted_Get;
 
   return (
      <>
@@ -255,6 +263,7 @@ function ChackOut() {
            )
         })
       }
+        <TotalCart ItemNumber={ItemNumber} RE_IM={RE_IM}/>
     </>
   )
 }

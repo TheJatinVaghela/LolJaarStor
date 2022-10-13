@@ -1,6 +1,6 @@
 import React,{ useState , useLayoutEffect , useRef} from 'react'
 import PropTypes from 'prop-types'
-
+import TotalCart from './TotalCart.js'
 
 
 const Save = props => {
@@ -14,10 +14,13 @@ const Save = props => {
   let IntialValue;
   let I_D_IntialValue;
   
+  let RE_IM;
+ let [ItemNumber, setItemNumber] = useState(0)
+
   let pr;
   let IV;
   let ID;
-
+ 
   const [ReloadCount, setReloadCount] = useState(0) 
 
   let Saved_Get = JSON.parse(localStorage.getItem("SAVE"));
@@ -32,6 +35,7 @@ if(Saved_Get !== null){
     Sort_Saved_Get = [...Saved_Get];
     Sort_Saved_Get.map((e,index)=> {if(e){ e["id"]=index; return e }} );
     Re_Saved_Get = Saved_Get.filter((e)=> e.note === undefined || "");
+    
 }
    
 let Saved_Get_Delete = (e)=>{
@@ -80,6 +84,7 @@ function Increes(e){
     setMoneyElm(e);
     setValueMoney(e.nativeEvent.path[3].children[1].children[1].children[1]);
     SET_Value(e)
+    
 }
 
  
@@ -87,6 +92,7 @@ function Decrees(e){
   if (Number(RE_I_D_IntialValue.YE.innerText) === 1) {
     RE_I_D_IntialValue.YE.innerText = 1;
     e.nativeEvent.path[2].children[1].children[1].innerText = Number(RE_IntialValue.EY) ;
+   
     return
 };
     
@@ -94,6 +100,7 @@ function Decrees(e){
     setMoneyElm(e);
     setValueMoney(e.nativeEvent.path[3].children[1].children[2].children[1].children[1].innerText);
     SET_Value(e)
+    
 };
 
 function SET_Value(e){
@@ -121,21 +128,28 @@ function MouseLeave(e) {
      }
     return e
   });
-  //console.log(Saved_Get);
+  setItemNumber((P)=> ItemNumber =  Saved_Get.filter((e)=> e.note === undefined || ""))
+  //  console.log(ItemNumber);
   localStorage.setItem("SAVE",JSON.stringify(Saved_Get));
+ 
   
 }
 function FOR_MouseLeave(e) {
   pr = e.children[1].children[1].children[1].innerText;
   IV = e.children[1].children[2].children[1].children[1].innerText;
   ID = e.id;
-//  console.log(pr , IV, ID);
+  // console.log(pr);
+ 
   return pr , IV, ID
 } 
-   function ChackOut() {
-     alert("Thnks For ChackingOut")
-   }
- 
+function ChackOut() {
+  alert("Thnks For ChackingOut")
+}
+  // console.log(Re_Saved_Get);
+  RE_IM = Re_Saved_Get;
+
+//  console.log(RE_IM);
+
   return (
     <>
        <h1 className='HEADERS'>SAVE</h1>    
@@ -170,7 +184,7 @@ function FOR_MouseLeave(e) {
         )
       }
         
-       
+       <TotalCart ItemNumber={ItemNumber} RE_IM={RE_IM}/>
          
        
       

@@ -1,4 +1,4 @@
-import React,{ useState , useEffect , useRef } from 'react'
+import React,{ useState , useEffect , useRef , useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Write_Note from './Write_Note.js'
 const Weather = props => {
@@ -27,27 +27,28 @@ const Weather = props => {
       article.current.style.display = "none";
       LoadIng.current.children[0].innerText = "Loading = 10%";
       (Saved !== null)? SAVE_Ary+=[Saved] : SAVE_Ary=null && localStorage.setItem(Saved_Word , JSON.stringify(SAVE_Ary));
-        
+        //  console.log(props.TakeValue);
          if (props.TakeValue === undefined) return;
-         ( async()=>{
-          LoadIng.current.children[0].innerText = "Loading = 30%" ; 
-         await fetch(`https://api.storerestapi.com/products`)
-         .then(response =>  response.json())
-             .then(response => {  {/*console.log(response); */}return Arr=response.data })
-             .then(()=>   setProductArry((prew)=> prew = Arr)    )
-             .then(()=> {
-                article.current.style.display = "grid";
-                LoadIng.current.style.display = "none";
+         
+            ( async()=>{
+            LoadIng.current.children[0].innerText = "Loading = 30%" ; 
+          await fetch(`https://api.storerestapi.com/products`)
+          .then(response =>  response.json())
+              .then(response => {  {/*console.log(response); */}return Arr=response.data })
+              .then(()=>   setProductArry((prew)=> prew = Arr)    )
+              .then(()=> {
+                  article.current.style.display = "grid";
+                  LoadIng.current.style.display = "none";
+                })
+              .catch(err => {
+                console.log(err);
+                article.current.style.display = "none";
+                LoadIng.current.children[0].innerText =  String(err) +  "  (1)=> Chack your network , (2) => API is not working "
               })
-             .catch(err => {
-              console.log(err);
-              article.current.style.display = "none";
-              LoadIng.current.children[0].innerText =  String(err) +  "  (1)=> Chack your network , (2) => API is not working "
-             })
-            
-             //console.log(Arr);
-               
-         })();
+              //console.log(Arr);
+          })();
+        
+         
 
         // LoadIng.current.style.display = "none";
         // article.current.style.display = "grid";
