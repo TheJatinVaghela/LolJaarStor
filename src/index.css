@@ -159,10 +159,10 @@ width: var(--IMG_Nav);
   
 
 
-.LOADING{
+.LOADING , .LDIN{
  display: flex;
- width: 70%;
- height: 70%;
+ width: auto;
+ height: auto;
  border: 2px solid RED;
  background-color: #5f5e5e;
  margin: auto;
@@ -170,7 +170,8 @@ width: var(--IMG_Nav);
  padding: 1rem;
 
 }
-.LOADING > .LOADING_H1{
+.LOADING > .LOADING_H1,
+.LDIN > .LDIN_H1{
   color: #e40000;
   text-decoration: underline red;
   display: inline-block;
@@ -336,13 +337,16 @@ outline: 2px solid Black;
   outline: 2px solid red;
     background-color: #3aff0580;
  }
- .UserNameEdit_ADD_HIDE{
+ .UserNameEdit_ADD_HIDE,
+ .LDIN_HIDE{
   display: none;
  }
  .UserNameEdit_ADD_SHOW{
   display: initial;
  }
-
+.LDIN_SHOW{
+  display: flex;
+}
  /* ===== TotalCartDiv */
 
  .TotalCartDiv{

@@ -16,7 +16,7 @@ const TotalCart = props => {
 
 return (
     <>
-      <div className='TotalCartDiv'><span>Sub Total of Itms{L} =TotalCost {SUM}$ </span><button className='Save_G_D_2_Div_DC_B_2' ref={BTN}>Buy All</button></div>
+      <div className='TotalCartDiv'><span>Sub Total of Itms {L} =TotalCost {SUM} $ </span><button className='Save_G_D_2_Div_DC_B_2' ref={BTN}>Buy All</button></div>
     </>
   )
 }

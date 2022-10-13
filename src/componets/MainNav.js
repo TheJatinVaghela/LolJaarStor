@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState , useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Outlet, Link } from "react-router-dom";
 //  import Weather from './Weather.js'
@@ -7,7 +7,10 @@ const MainNav = props => {
   const [Search, useSearch] = useState("")
   let Save = "Save's";
   let Noted = "Noted"
-  
+  const LDIN = useRef();
+  const FormINP_Ref = useRef();
+  let LDIN_Text = "well I can do many stuf with this search bar but i thing it would be good in its own website where this search bar can be usefull to the User";
+
    function GetValue (e){
     useSearch(prew => prew = e.target.value);
      //console.log(Search);
@@ -16,6 +19,15 @@ const MainNav = props => {
   function L(e){
     e.preventDefault()
   //  console.log(e.nativeEvent.path[0].value);
+}
+ function FromSubmit(e){
+   e.preventDefault();
+  console.log("Message");
+  LDIN.current.classList.replace("LDIN_HIDE" , "LDIN_SHOW");
+};
+function LDIN_CLOSE_FC(e) {
+  LDIN.current.classList.replace("LDIN_SHOW" , "LDIN_HIDE");
+  FormINP_Ref.current.value = "";
 }
   return (
     <>
@@ -31,8 +43,8 @@ const MainNav = props => {
         <Link to="/"><h1 className='Main_Active'>Store</h1></Link>
         </div>
         <div className="MN_2_Div">
-            <form className="MN_2_Div_Form" action="" onSubmit={(e)=> e.preventDefault()}>
-                <input type="search" name="" className="MN_2_search Main_Active" onInput={L} placeholder="Search" />
+            <form className="MN_2_Div_Form" action="" onSubmit={FromSubmit}>
+                <input type="search" name="" className="MN_2_search Main_Active" onInput={L} placeholder="Search" ref={FormINP_Ref}/>
             </form>
         </div>
         <div className="MN_3_Div">
@@ -40,7 +52,10 @@ const MainNav = props => {
            <Link  to="/Noted"><h1 className='Main_Active'>Noted</h1></Link>
         </div>
       </div>
-
+      <div className='LDIN absolute mt-5 LDIN_HIDE' ref={LDIN}>
+             <h1 className='LDIN_H1'>{LDIN_Text}</h1>
+             <button onClick={LDIN_CLOSE_FC}>CLOSE</button>
+      </div>
       {/* /////// */}
       
       <Outlet/>
